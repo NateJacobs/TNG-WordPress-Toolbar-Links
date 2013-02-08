@@ -1,7 +1,7 @@
 <?php
 
 /**
- *	Plugin Name: 	TNG Toolbar Links
+ *	Plugin Name: 	TNG WordPress Toolbar Links
  *	Description: 	Adds links to all the important pages in TNG from the WordPress Toolbar.
  *	Version: 		1.0
  *	Date:			2/7/13
@@ -60,7 +60,6 @@ class TNGToolBarLinks
 			add_action( 'wp_before_admin_bar_render', array( $this, 'tng_media_menu' ) );
 			add_action( 'wp_before_admin_bar_render', array( $this, 'tng_info_menu' ) );
 			add_action( 'init', array( $this, 'localization' ) );
-			add_action( 'init', array( $this, 'github_update' ) );
 		
 			register_activation_hook( __FILE__, array( $this, 'activation' ) );
 		}
@@ -80,39 +79,6 @@ class TNGToolBarLinks
  	public function localization() 
  	{
   		load_plugin_textdomain( 'tng-user-mgmt', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' ); 
-	}
-	
-	/** 
-	*	GitHub Update
-	*
-	*	Update plugin from GitHub.
-	*
-	*	@author		Nate Jacobs
-	*	@date		2/8/13
-	*	@since		1.0
-	*
-	*	@param		
-	*/
-	public function github_update()
-	{
-		if ( is_admin() ) 
-		{
-			require_once plugin_dir_path( __FILE__ ).'updater.php';
-			define( 'WP_GITHUB_FORCE_UPDATE', true );
-			
-			$config = array(
-				'api_url' => 'https://api.github.com/repos/NateJacobs/TNG-WordPress-Toolbar-Links',
-				'raw_url' => 'https://raw.github.com/NateJacobs/TNG-WordPress-Toolbar-Links/master',
-				'github_url' => 'https://github.com/NateJacobs/TNG-WordPress-Toolbar-Links',
-				'zip_url' => 'https://github.com/NateJacobs/TNG-WordPress-Toolbar-Links/zipball/master',
-				'requires' => '3.1',
-				'tested' => '3.3',
-				'readme' => 'README.md',
-			);
-		
-			$up = new WP_GitHub_Updater( $config );
-			var_dump($up);
-		}
 	}
 	
 	/** 
