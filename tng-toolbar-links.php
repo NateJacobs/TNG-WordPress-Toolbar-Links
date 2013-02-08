@@ -24,6 +24,7 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+
 /** 
 *	TNG Toolbar Links
 *
@@ -59,6 +60,7 @@ class TNGToolBarLinks
 			add_action( 'wp_before_admin_bar_render', array( $this, 'tng_media_menu' ) );
 			add_action( 'wp_before_admin_bar_render', array( $this, 'tng_info_menu' ) );
 			add_action( 'init', array( $this, 'localization' ) );
+			add_action( 'init', array( $this, 'github_update' ) );
 		
 			register_activation_hook( __FILE__, array( $this, 'activation' ) );
 		}
@@ -78,6 +80,42 @@ class TNGToolBarLinks
  	public function localization() 
  	{
   		load_plugin_textdomain( 'tng-user-mgmt', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' ); 
+	}
+	
+	/** 
+	*	GitHub Update
+	*
+	*	Update plugin from GitHub.
+	*
+	*	@author		Nate Jacobs
+	*	@date		2/8/13
+	*	@since		1.0
+	*
+	*	@param		
+	*/
+	public function github_update()
+	{
+		if ( is_admin() ) 
+		{
+			include_once plugin_dir_path( __FILE__ ).'github-update.php';
+			//define( 'WP_GITHUB_FORCE_UPDATE', true );
+			
+			$config = array(
+				'slug' => plugin_basename( __FILE__ ),
+				'proper_folder_name' => 'tng-toolbar-links',
+				'api_url' => 'https://api.github.com/repos/jkudish/WordPress-GitHub-Plugin-Updater',
+				'raw_url' => 'https://raw.github.com/jkudish/WordPress-GitHub-Plugin-Updater/master',
+				'github_url' => 'https://github.com/jkudish/WordPress-GitHub-Plugin-Updater',
+				'zip_url' => 'https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/zipball/master',
+				'sslverify' => true,
+				'requires' => '3.1',
+				'tested' => '3.3',
+				'readme' => 'README.md',
+				'access_token' => '',
+			);
+		
+			$up = new WP_GitHub_Updater( $config );
+		}
 	}
 	
 	/** 
