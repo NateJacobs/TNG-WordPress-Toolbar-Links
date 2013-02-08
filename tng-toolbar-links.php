@@ -97,24 +97,21 @@ class TNGToolBarLinks
 	{
 		if ( is_admin() ) 
 		{
-			include_once plugin_dir_path( __FILE__ ).'github-update.php';
-			//define( 'WP_GITHUB_FORCE_UPDATE', true );
+			require_once plugin_dir_path( __FILE__ ).'updater.php';
+			define( 'WP_GITHUB_FORCE_UPDATE', true );
 			
 			$config = array(
-				'slug' => plugin_basename( __FILE__ ),
-				'proper_folder_name' => 'tng-toolbar-links',
-				'api_url' => 'https://api.github.com/repos/jkudish/WordPress-GitHub-Plugin-Updater',
-				'raw_url' => 'https://raw.github.com/jkudish/WordPress-GitHub-Plugin-Updater/master',
-				'github_url' => 'https://github.com/jkudish/WordPress-GitHub-Plugin-Updater',
-				'zip_url' => 'https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/zipball/master',
-				'sslverify' => true,
+				'api_url' => 'https://api.github.com/repos/NateJacobs/TNG-WordPress-Toolbar-Links',
+				'raw_url' => 'https://raw.github.com/NateJacobs/TNG-WordPress-Toolbar-Links/master',
+				'github_url' => 'https://github.com/NateJacobs/TNG-WordPress-Toolbar-Links',
+				'zip_url' => 'https://github.com/NateJacobs/TNG-WordPress-Toolbar-Links/zipball/master',
 				'requires' => '3.1',
 				'tested' => '3.3',
 				'readme' => 'README.md',
-				'access_token' => '',
 			);
 		
 			$up = new WP_GitHub_Updater( $config );
+			var_dump($up);
 		}
 	}
 	
