@@ -129,7 +129,7 @@ class TNGToolBarLinks
             'id'    => 'tng_find_parent',
             'title' => __( 'TNG Find', 'tng_toolbar' ),
         ));
-
+        
         $wp_admin_bar->add_node( array(
             'id'    => 'tng_surnames',
             'title' => __( 'Surnames', 'tng_toolbar' ),
