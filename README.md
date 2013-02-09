@@ -1,9 +1,13 @@
 # TNG WordPress Toolbar Links
 
-Contributors: NateJacobs 
+Contributors: NateJacobs
+ 
 Tags: tng, genealogy, toolbar
+
 Requires at least: 3.1
+
 Tested up to: 3.5
+
 Stable tag: 1.0
 
 Adds links to all the important pages in TNG from the WordPress Toolbar.
